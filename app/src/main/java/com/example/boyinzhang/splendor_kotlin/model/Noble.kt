@@ -14,4 +14,10 @@ class Noble(diamond: Int, emerald: Int, onyx: Int, ruby: Int, sapphire: Int) {
         threshold = GemInfo(diamond,emerald,onyx,ruby,sapphire)
     }
 
+    fun isSatisfied(playerCard : GemInfo):Boolean{
+        for (i in 0..4){
+            if (playerCard.getByIndex(i)<threshold.getByIndex(i)) return false
+        }
+        return true
+    }
 }

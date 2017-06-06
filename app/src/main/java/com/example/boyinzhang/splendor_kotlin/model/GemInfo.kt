@@ -16,6 +16,17 @@ data class GemInfo(var diamond: Int, var emerald:Int, var onyx:Int, var ruby:Int
         this.sapphire += deltaSapphire
     }
 
+    fun getByIndex(index:Int):Int{
+        when(index){
+            0 -> this.diamond
+            1 -> this.emerald
+            2 -> this.onyx
+            3 -> this.ruby
+            4 -> this.sapphire
+        }
+        return -1;
+    }
+
     fun setGems(diamond:Int, emerald:Int, onyx:Int, ruby:Int, sapphire:Int){
         this.diamond = diamond
         this.emerald = emerald
@@ -24,9 +35,41 @@ data class GemInfo(var diamond: Int, var emerald:Int, var onyx:Int, var ruby:Int
         this.sapphire = sapphire
     }
 
-
     fun resetGems(){
         setGems(0,0,0,0,0);
+    }
+
+    fun addGems(deltaGems:GemInfo){
+        this.diamond+=deltaGems.diamond
+        this.emerald+=deltaGems.emerald
+        this.onyx+=deltaGems.onyx
+        this.ruby+=deltaGems.ruby
+        this.sapphire+=deltaGems.sapphire
+    }
+
+    fun reduceGems(deltaGems:GemInfo){
+        this.diamond-=deltaGems.diamond
+        this.emerald-=deltaGems.emerald
+        this.onyx-=deltaGems.onyx
+        this.ruby-=deltaGems.ruby
+        this.sapphire-=deltaGems.sapphire
+    }
+
+    fun totalGems():Int{
+        return this.diamond+this.emerald+this.onyx+this.ruby+this.sapphire
+    }
+
+    fun numOfNonZeroTypes():Int{
+        return boolToInt(this.diamond>0)+
+                boolToInt(this.emerald>0)+
+                boolToInt(this.onyx>0)+
+                boolToInt(this.ruby>0)+
+                boolToInt(this.sapphire>0)
+    }
+
+    fun boolToInt(bool:Boolean):Int{
+        if(bool) return 1
+        else return 0
     }
 
 }
